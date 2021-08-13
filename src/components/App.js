@@ -5,7 +5,10 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Courses from './pages/Courses';
 import Services from './pages/Services';
+import Help from './pages/Help';
 import Cart from './pages/Cart';
+import Support from './pages/Support';
+// import Slider from './pages/Slider';
 import Login from './authentication/Login';
 import Register from './authentication/Register';
 import Dashboard from './dashboard/Dashboard';
@@ -18,6 +21,7 @@ import TestResult from './student/TestResult';
 class App extends Component {
   render() {
     return (
+      
       <BrowserRouter>
         <Switch>
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home} />
@@ -31,10 +35,25 @@ class App extends Component {
             path={`${process.env.PUBLIC_URL}/courses`}
             component={Courses}
           />
+           {/* <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/Slider`}
+            component={Slider}
+          /> */}
           <Route
             exact
             path={`${process.env.PUBLIC_URL}/services`}
             component={Services}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/help`}
+            component={Help}
+          />
+          <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/support`}
+            component={Support}
           />
           <Route
             exact
@@ -84,6 +103,7 @@ class App extends Component {
           <Route />
         </Switch>
       </BrowserRouter>
+      
     );
   }
 }

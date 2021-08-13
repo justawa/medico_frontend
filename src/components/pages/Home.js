@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserPackages } from '../../actions';
 import PageLayout from '../common/layouts/pages/PageLayout';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Carousel } from 'react-bootstrap';
+ 
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -11,7 +15,18 @@ export default function Home() {
   useEffect(() => {
     dispatch(getUserPackages());
   }, [dispatch]);
+ 
+  const [data , setData ]=useState([]);
+  useEffect( async ()=>{
+  let result = await fetch("http://localhost:8000/api/showimage");
+  result =await result.json();
+  setData(result)
+},[])
+console.warn("result",data)  
 
+
+   
+ 
   function renderGrandTests() {
     if (grandTests.length) {
       return grandTests.map((test) => <li>{test.name}</li>);
@@ -22,8 +37,30 @@ export default function Home() {
 
   return (
     <PageLayout>
-      <section className='sec-b'>
-        <div className='container'>
+            {/* Saurav */}
+            {/* <div className=' col-lg-6 col-md-6 col-sm-12'> */}
+             
+             
+             <Carousel>
+
+
+                {
+                  data.map((item)=>
+              <Carousel.Item>
+                   
+                   <img alt='' className='img-fluid w-100' src={"http://127.0.0.1:8000/uploads/banner/"+item.profile_image} style ={{ height:"510px"}} />
+              </Carousel.Item>
+                    )
+                }
+
+
+             </Carousel>
+
+
+
+            {/* </div> */}
+            <section className='sec-b'>
+            <div className='container'>
           <div className='row'>
             <div className='col-lg-6 col-md-6 col-sm-12'>
               <h1 className='font-5'>
@@ -31,9 +68,6 @@ export default function Home() {
                 <br /> Creating <b>Future.</b>
               </h1>
               <button className='blue-btn'>Read More</button>
-            </div>
-            <div className=' col-lg-6 col-md-6 col-sm-12'>
-              <img alt='' className='img-fluid' src='images/banner.png' />
             </div>
           </div>
         </div>

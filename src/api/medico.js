@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const isLive = true;
+const isLive = false;
 
 const url = isLive
   ? 'https://justconsult.org/medoc_api/api/v1'

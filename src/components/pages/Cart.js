@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DashboardLayout from '../common/layouts/dashboard/DashboardLayout';
 import { buyUserPackage, removeItemFromCart } from '../../actions';
@@ -14,6 +15,9 @@ function Cart({ history }) {
 
   const { loading, items } = useSelector((state) => state.cart);
 
+  if(JSON.parse(localStorage.getItem("user")) == null){
+    history.push(`${process.env.PUBLIC_URL}/login`);
+  }
   function buyPackage(id) {
     if (token) {
       dispatch(buyUserPackage(token, id));
@@ -33,6 +37,33 @@ function Cart({ history }) {
     dispatch(removeItemFromCart(id));
   }
 
+
+  // let Data = JSON.parse(localStorage.getItem("user")).name;
+  //let packData = JSON.parse(localStorage.getItem("cart")).items.name;
+
+ 
+  //  console.warn(packData);
+   
+  const [pid, setPid] = useState("");
+  const [studentid, setStudentid] = useState("");
+  const [amount, setAmount] = useState(calculateCartAmount());
+  const [status, setStatus] = useState("1");
+   
+  async function paymentshow() {
+    let Data = JSON.parse(localStorage.getItem("user")).name;
+    let packData = JSON.parse(localStorage.getItem("cart")).items.name;
+    const formData = new FormData();
+    formData.append('pid', packData);
+    formData.append('studentid', Data);
+    formData.append('amount', amount);
+    formData.append('status', status);
+    let result = await fetch("http://localhost:8000/api/payment/", {
+
+      method: 'POST',
+      body: formData,
+    });
+
+  }
   return (
     <DashboardLayout>
       <section className='secc'>
@@ -84,7 +115,8 @@ function Cart({ history }) {
                       <strong>Total:</strong> {calculateCartAmount()}
                     </ListGroupItem>
                   </ListGroup>
-                  <Button color='info' block onClick={() => buyPackage(items)}>
+                  {/* onClick={()=>buyPackage(items)} */}
+                  <Button color='info'  onClick= {paymentshow} >
                     Buy Packages
                   </Button>
                 </div>

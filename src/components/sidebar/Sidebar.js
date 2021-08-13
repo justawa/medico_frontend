@@ -46,18 +46,14 @@ function Sidebar() {
 
   return (
     <Menu>
-      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/`}>
-        Home
-      </Link>
-      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/about`}>
-        About
-      </Link>
-      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/courses`}>
-        Courses
-      </Link>
-      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/services`}>
-        Services
-      </Link>
+
+      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/`}> Home </Link>
+
+      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/courses`}> Courses </Link>
+      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/services`}> Services </Link>
+      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/about`}> About </Link>
+      <Link className='menu-item' to={`${process.env.PUBLIC_URL}/help`}> Need Help? </Link>
+     
       {authUrls()}
     </Menu>
   );

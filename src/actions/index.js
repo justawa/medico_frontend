@@ -25,6 +25,9 @@ import {
   ADD_CART_SUCCESS,
   ADD_CART_ERROR,
   ADD_CART_LOADING,
+  USER_SUPPORT_LOADING,
+  USER_SUPPORT_ERROR,
+  USER_SUPPORT_SUCCESS,
   CART_RESET,
   REMOVE_FROM_CART,
   USER_PACKAGES_LOADING,
@@ -87,6 +90,28 @@ export const getUserPackages = (token, id) => async (dispatch) => {
     // isLoading();
   }
 };
+
+// Support and Help 
+// export const helpSupport = (token, id) => async (dispatch, getState) => {
+//   try {
+//     dispatch({
+//       type: ADD_CART_LOADING,
+//     });
+//     const response = await medico.get(`support/${id}`, {
+//       headers: { Authorization: `Bearer ${token}` },
+//     });
+//     dispatch({
+//       type: ADD_CART_SUCCESS,
+//       payload: response.data.help,
+//     });
+//     localStorage.setItem('support', JSON.stringify(getState().support));
+//   } catch (e) {
+//     dispatch({
+//       type: ADD_CART_ERROR,
+//       payload: e.response.data.error,
+//     });
+//   }
+// };
 
 export const getPackageTests = (token, id) => async (dispatch) => {
   try {
