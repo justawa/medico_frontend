@@ -18,14 +18,14 @@ function Cart({ history }) {
   if(JSON.parse(localStorage.getItem("user")) == null){
     history.push(`${process.env.PUBLIC_URL}/login`);
   }
-  function buyPackage(id) {
-    if (token) {
-      dispatch(buyUserPackage(token, id));
-      history.push(`${process.env.PUBLIC_URL}/dashboard`);
-    } else {
-      history.push(`${process.env.PUBLIC_URL}/login?redirect=cart`);
-    }
-  }
+  // function buyPackage(id) {
+  //   if (token) {
+  //     dispatch(buyUserPackage(token, id));
+  //     history.push(`${process.env.PUBLIC_URL}/dashboard`);
+  //   } else {
+  //     history.push(`${process.env.PUBLIC_URL}/login?redirect=cart`);
+  //   }
+  // }
 
   function calculateCartAmount() {
     return items.reduce((total, item) => {
@@ -49,20 +49,34 @@ function Cart({ history }) {
   const [amount, setAmount] = useState(calculateCartAmount());
   const [status, setStatus] = useState("1");
    
-  async function paymentshow() {
+  async function buyPackage(id) {
+    // if (token) {
+      // dispatch(buyUserPackage(token, id));
     let Data = JSON.parse(localStorage.getItem("user")).name;
     let packData = JSON.parse(localStorage.getItem("cart")).items.name;
+    let prices = JSON.parse(localStorage.getItem("cart")).items.price;
+
+    console.warn(packData);
+    console.warn(prices);
+
+    console.warn(Data);
+
     const formData = new FormData();
     formData.append('pid', packData);
     formData.append('studentid', Data);
     formData.append('amount', amount);
     formData.append('status', status);
     let result = await fetch("http://localhost:8000/api/payment/", {
-
+      
       method: 'POST',
       body: formData,
     });
 
+    
+      // history.push(`${process.env.PUBLIC_URL}/dashboard`);
+    // } else {
+      // history.push(`${process.env.PUBLIC_URL}/login?redirect=cart`);
+    // }
   }
   return (
     <DashboardLayout>
@@ -116,7 +130,7 @@ function Cart({ history }) {
                     </ListGroupItem>
                   </ListGroup>
                   {/* onClick={()=>buyPackage(items)} */}
-                  <Button color='info'  onClick= {paymentshow} >
+                  <Button color='info'  onClick= {()=>buyPackage(items)} >
                     Buy Packages
                   </Button>
                 </div>

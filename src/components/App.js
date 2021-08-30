@@ -6,6 +6,9 @@ import About from './pages/About';
 import Courses from './pages/Courses';
 import Services from './pages/Services';
 import Help from './pages/Help';
+import Counselling from './pages/Counselling';
+import Test from './pages/Test';
+
 import Cart from './pages/Cart';
 import Support from './pages/Support';
 // import Slider from './pages/Slider';
@@ -49,6 +52,16 @@ class App extends Component {
             exact
             path={`${process.env.PUBLIC_URL}/help`}
             component={Help}
+          />
+           <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/counselling`}
+            component={Counselling}
+          />
+           <Route
+            exact
+            path={`${process.env.PUBLIC_URL}/test`}
+            component={Test}
           />
           <Route
             exact
