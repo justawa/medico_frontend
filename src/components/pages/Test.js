@@ -6,7 +6,7 @@ export default function Test() {
 
     const [testt , settestt ]=useState([]);
 useEffect( async ()=>{
-let result = await fetch("http://localhost:8000/api/tests");
+let result = await fetch("https://justconsult.org/medoc_api/api/v1/tests");
 result =await result.json();
 settestt(result)
 },[])

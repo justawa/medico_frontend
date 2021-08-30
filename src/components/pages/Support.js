@@ -52,7 +52,7 @@ function Support({history}) {
 
             try {
                 let user_id = JSON.parse(localStorage.getItem("user")).id;
-                const responseUrl = 'http://localhost:8000/api/userquery/'+ user_id + '/';
+                const responseUrl = 'https://justconsult.org/medoc_api/api/v1/userquery/'+ user_id + '/';
                 const response = await fetch(responseUrl);
                 const responseJson = await response.json();
                 console.log(responseJson);

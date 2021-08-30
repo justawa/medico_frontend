@@ -41,7 +41,7 @@ function Help({ history }) {
             // formData.append('userid', userid);
             // formData.append('question', inputbox);
            
-            let result = await fetch("http://localhost:8000/api/userquery/", {
+            let result = await fetch("https://justconsult.org/medoc_api/api/v1/userquery", {
         
               method: 'POST',
               body: JSON.stringify(item),

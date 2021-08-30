@@ -5,7 +5,7 @@ import PageLayout from '../common/layouts/pages/PageLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
- 
+ import url from '../../api/medico';
 
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
  
   const [data , setData ]=useState([]);
   useEffect( async ()=>{
-  let result = await fetch("http://localhost:8000/api/showimage");
+  let result = await fetch("https://justconsult.org/medoc_api/api/v1/showimage");
   result =await result.json();
   setData(result)
 },[])
@@ -29,7 +29,7 @@ console.warn("result",data)
 
 const [Headline , setHeadline ]=useState([]);
 useEffect( async ()=>{
-let result = await fetch("http://localhost:8000/api/showhead");
+let result = await fetch("https://justconsult.org/medoc_api/api/v1/showhead");
 result =await result.json();
 setHeadline(result)
 },[])
@@ -37,7 +37,7 @@ console.warn("headline",Headline)
 
 const [Intro , setIntro]=useState([]);
 useEffect( async ()=>{
-let result = await fetch("http://localhost:8000/api/showabout");
+let result = await fetch("https://justconsult.org/medoc_api/api/v1/showabout");
 result =await result.json();
 setIntro(result)
 },[])
@@ -45,7 +45,7 @@ console.warn("about",Intro)
 
 const [testt , settestt ]=useState([]);
 useEffect( async ()=>{
-let result = await fetch("http://localhost:8000/api/tests");
+let result = await fetch("https://justconsult.org/medoc_api/api/v1/tests");
 result =await result.json();
 settestt(result)
 },[])
@@ -53,7 +53,7 @@ console.warn("test",testt)
 
 const [achi , setachi ]=useState([]);
 useEffect( async ()=>{
-let result = await fetch("http://localhost:8000/api/showa");
+let result = await fetch("https://justconsult.org/medoc_api/api/v1/showa");
 result =await result.json();
 setachi(result)
 },[])
@@ -61,7 +61,7 @@ console.warn("test",achi)
    
 const [coun , setcoun ]=useState([]);
 useEffect( async ()=>{
-let result = await fetch("http://localhost:8000/api/showc");
+let result = await fetch("https://justconsult.org/medoc_api/api/v1/showc");
 result =await result.json();
 setcoun(result)
 },[])
@@ -69,7 +69,7 @@ console.warn("coun",coun)
 
 const [noti , setnoti ]=useState([]);
 useEffect( async ()=>{
-let result = await fetch("http://localhost:8000/api/shown");
+let result = await fetch("https://justconsult.org/medoc_api/api/v1/shown");
 result =await result.json();
 setnoti(result)
 },[])
@@ -84,24 +84,23 @@ console.warn("notice",noti)
   //     return <li>No Tests</li>;
   //   }
   // }
+  console.log('this is the url ',url);
 
   return (
     <PageLayout>
-            {/* Saurav */}
-            {/* <div className=' col-lg-6 col-md-6 col-sm-12'> */}
-             
+           
              <br></br>
              <Carousel>
                 {
                   data.map((item)=>
                    <Carousel.Item interval={1500}>
 
-                   <img alt='' className='img-fluid w-100' src={"http://127.0.0.1:8000/uploads/banner/"+item.profile_image} style ={{ height:"550px"}}  />
+                   <img alt='' className='img-fluid w-100' src={"https://justconsult.org/medoc_api/uploads/banner/"+item.profile_image} style ={{ height:"550px"}}  />
                    
                    <div class="carousel-content">
                     
                     <p class="poster">{item.title}</p>    
-                    <button className='blue-btn'>Read More</button>      
+                    <button className='blue-btn'> <a href="{item.link}"> Read More</a> </button>      
                    </div>                   
                    </Carousel.Item>
                     )
@@ -385,7 +384,7 @@ console.warn("notice",noti)
 
                     <div className='col-lg-3 col-md-3 col-sm-12'>
                       <div className='achiv text-center p-3'>
-                        <img alt='' className='img-arc' src={"http://127.0.0.1:8000/Achiever/"+ite.profile_image} />
+                        <img alt='' className='img-arc' src={"https://justconsult.org/medoc_api/Achiever/"+ite.profile_image} />
                         <h4><b>{ite.name}</b></h4>
                         <p>Remark: {ite.percent}%</p>
                       </div>

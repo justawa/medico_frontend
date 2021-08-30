@@ -7,7 +7,7 @@ export default function Counselling() {
 
   const [coun , setcoun ]=useState([]);
   useEffect( async ()=>{
-  let result = await fetch("http://localhost:8000/api/showc");
+  let result = await fetch("https://justconsult.org/medoc_api/api/v1/showc");
   result =await result.json();
   setcoun(result)
   },[])
@@ -34,7 +34,7 @@ export default function Counselling() {
                   <div class="col-md-4 col-lg-4 col-12">
                   <div class="p-3 text-center counseler-div">                       
                   <div class="image-counseler">
-                  <img src={"http://127.0.0.1:8000/Counselling/"+sau.profile_image} />
+                  <img src={"https://justconsult.org/medoc_api/Counselling/"+sau.profile_image} />
                   </div>
                   <h4><b>{sau.name}</b></h4>
                   <p class="text-uppercase blue">{sau.specilization}</p>
