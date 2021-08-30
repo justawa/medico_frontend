@@ -5,7 +5,7 @@ import PageLayout from '../common/layouts/pages/PageLayout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
- import url from '../../api/medico';
+import url from '../../api/medico';
 
 
 export default function Home() {
