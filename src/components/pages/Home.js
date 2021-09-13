@@ -84,7 +84,6 @@ console.warn("notice",noti)
   //     return <li>No Tests</li>;
   //   }
   // }
-  console.log('this is the url ',url);
 
   return (
     <PageLayout>
@@ -100,7 +99,7 @@ console.warn("notice",noti)
                    <div class="carousel-content">
                     
                     <p class="poster">{item.title}</p>    
-                    <button className='blue-btn'> <a href="{item.link}"> Read More</a> </button>      
+                    <button className='blue-btn'> <a href={"https://justconsult.org/medoc/"+item.link} > Read More</a> </button>      
                    </div>                   
                    </Carousel.Item>
                     )
@@ -157,12 +156,12 @@ console.warn("notice",noti)
               <div className='conselling-b'>
                 <h4 className='text-center'>Notice</h4>
                    {
-                noti.map((notic)=>
+                noti.map((n)=>
                 <ul className='list-arrow'>
                   <li className='text-justify'>
                   
             
-                    {notic.notice}  
+                    {n.notice}  
                    
                   </li>
                    

@@ -46,27 +46,30 @@ function Cart({ history }) {
    
   const [pid, setPid] = useState("");
   const [studentid, setStudentid] = useState("");
-  const [amount, setAmount] = useState(calculateCartAmount());
+  const [student_id, setStudent_id] = useState("");
+
+  // const [amount, setAmount] = useState(calculateCartAmount());
   const [status, setStatus] = useState("1");
    
   async function buyPackage(id) {
     // if (token) {
       // dispatch(buyUserPackage(token, id));
     let Data = JSON.parse(localStorage.getItem("user")).name;
+    let ID = JSON.parse(localStorage.getItem("user")).id;
     let packData = JSON.parse(localStorage.getItem("cart")).items.name;
     let prices = JSON.parse(localStorage.getItem("cart")).items.price;
 
     console.warn(packData);
     console.warn(prices);
-
     console.warn(Data);
-
+    console.warn(ID);
     const formData = new FormData();
     formData.append('pid', packData);
     formData.append('studentid', Data);
-    formData.append('amount', amount);
+    formData.append('student_id', ID);
+    formData.append('amount', prices);
     formData.append('status', status);
-    let result = await fetch("http://localhost:8000/api/payment/", {
+    let result = await fetch("https://justconsult.org/medoc_api/api/v1/payment/", {
       
       method: 'POST',
       body: formData,
